@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {scale, verticalScale} from 'react-native-size-matters';
 import {Text, StyleSheet, SafeAreaView, Button} from 'react-native';
@@ -8,13 +8,19 @@ import {selectCurrentUser} from '../../redux/slice/authSlice';
 import {useGetAuthUserQuery} from '../../api/login';
 import {
   selectCurrentLang,
+  selectCurrentTheme,
   setLang,
   setTheme,
 } from '../../redux/slice/ConfigSlice';
+import AppStrings from '../../res/AppStrings';
+import {Amount, ButtonText} from '../../res/styles/text';
+import {Container} from '../../res/styles/view';
+import {AppButton} from '../../res/styles/buttons';
 
 const DashBoard = () => {
   const userEmail = useSelector(selectCurrentUser);
   const appLang = useSelector(selectCurrentLang);
+  const appTheme = useSelector(selectCurrentTheme);
 
   const {data, isLoading, isError, isFetching} = useGetAuthUserQuery(1, {
     refetchOnMountOrArgChange: true,
@@ -22,27 +28,30 @@ const DashBoard = () => {
   });
   const dispatch = useDispatch();
   const onLanguagePress = () => {
-    dispatch(setLang(appLang == 'en' ? 'en' : 'hi'));
+    dispatch(setLang(appLang == 'hi' ? 'en' : 'hi'));
   };
 
   const onThemePressed = () => {
-    dispatch(setTheme('day'));
+    dispatch(setTheme(appTheme == 'dark' ? 'light' : 'dark'));
   };
-
-  console.log(
-    'isFetching' + JSON.stringify({data, isLoading, isError, isFetching}),
-  );
 
   return (
     <SafeAreaView style={styles.screen}>
-      <Text style={styles.hiText}>Hii, there</Text>
-      <Text style={styles.name}>USER ID : {JSON.stringify(userEmail?.id)}</Text>
-      {/* <Text style={styles.name}>USER ID : {JSON.stringify(isFetching)}</Text> */}
-      <Button title="Language" onPress={onLanguagePress} />
-      <Button title="Switch to Dark Mode" onPress={() => null} />
-      <Text style={styles.text}>We are on Light mode!</Text>
-
-      <Button title="Theme" onPress={onThemePressed} />
+      <Container>
+        <Text style={styles.hiText}>Hii, there</Text>
+        <Text style={styles.name}>
+          USER ID : {JSON.stringify(userEmail?.id)}
+        </Text>
+        <ButtonText>{appLang}</ButtonText>
+        <ButtonText style={styles.text}>{AppStrings.lang}</ButtonText>
+        <AppButton onPress={onLanguagePress} style={{marginBottom: 20}}>
+          <ButtonText>Language</ButtonText>
+        </AppButton>
+        <ButtonText>We are on {appTheme} mode!</ButtonText>
+        <AppButton onPress={onThemePressed}>
+          <ButtonText>Theme</ButtonText>
+        </AppButton>
+      </Container>
     </SafeAreaView>
   );
 };

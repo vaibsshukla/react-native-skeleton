@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import AppStrings from '../../res/AppStrings';
 
 export const configSlice = createSlice({
   name: 'config',
@@ -7,6 +8,7 @@ export const configSlice = createSlice({
     setLang: (state, action) => {
       const lang = action.payload;
       state.lang = lang;
+      AppStrings.setLanguage(lang);
     },
     setTheme: (state, action) => {
       const theme = action.payload;

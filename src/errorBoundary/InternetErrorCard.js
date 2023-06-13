@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, SafeAreaView, StyleSheet, Image} from 'react-native';
-const ErrorCard = () => {
+const InternetErrorCard = () => {
   return (
     <View style={styles.errorContainer}>
       <View style={styles.textContainer}>
@@ -13,7 +13,7 @@ const ErrorCard = () => {
   );
 };
 
-export default ErrorCard;
+export default InternetErrorCard;
 
 const styles = StyleSheet.create({
   rootView: {
