@@ -38,10 +38,6 @@ const DashBoard = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <Container>
-        <Text style={styles.hiText}>Hii, there</Text>
-        <Text style={styles.name}>
-          USER ID : {JSON.stringify(userEmail?.id)}
-        </Text>
         <ButtonText>{appLang}</ButtonText>
         <ButtonText style={styles.text}>{AppStrings.lang}</ButtonText>
         <AppButton onPress={onLanguagePress} style={{marginBottom: 20}}>
