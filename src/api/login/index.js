@@ -27,6 +27,15 @@ export const authApi = apiSlice.injectEndpoints({
         data: response,
       }),
     }),
+    getAuthUserTemp: builder.query({
+      query: () => ({
+        url: '/products/category/jewelery',
+        method: 'GET',
+      }),
+      transformResponse: response => ({
+        data: response,
+      }),
+    }),
 
     editProfile: builder.mutation({
       query: body => ({
@@ -63,6 +72,7 @@ export const authApi = apiSlice.injectEndpoints({
 });
 
 export const {
+  useGetAuthUserTempQuery,
   useGetAuthUserQuery,
   useLoginMutation,
   useLogoutMutation,

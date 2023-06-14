@@ -5,7 +5,7 @@ import {Text, StyleSheet, SafeAreaView, Button} from 'react-native';
 
 import palette from '../../res/Palette';
 import {selectCurrentUser} from '../../redux/slice/authSlice';
-import {useGetAuthUserQuery} from '../../api/login';
+import {useGetAuthUserTempQuery} from '../../api/login';
 import {
   selectCurrentLang,
   selectCurrentTheme,
@@ -22,7 +22,7 @@ const DashBoard = () => {
   const appLang = useSelector(selectCurrentLang);
   const appTheme = useSelector(selectCurrentTheme);
 
-  const {data, isLoading, isError, isFetching} = useGetAuthUserQuery(1, {
+  const {data, isLoading, isError, isFetching} = useGetAuthUserTempQuery(1, {
     refetchOnMountOrArgChange: true,
     refetchOnReconnect: false,
   });
@@ -38,6 +38,10 @@ const DashBoard = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <Container>
+        <Text style={styles.hiText}>Hii, there</Text>
+        <Text style={styles.name}>
+          USER ID : {JSON.stringify(userEmail?.id)}
+        </Text>
         <ButtonText>{appLang}</ButtonText>
         <ButtonText style={styles.text}>{AppStrings.lang}</ButtonText>
         <AppButton onPress={onLanguagePress} style={{marginBottom: 20}}>

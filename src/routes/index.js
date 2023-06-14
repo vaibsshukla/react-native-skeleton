@@ -9,7 +9,11 @@ const RootNavigator = () => {
   const isAuth = useSelector(selectAuth);
   console.log('isAuthisAuth' + JSON.stringify(isAuth));
 
-  return true ? <AppNavigator /> : <AuthNavigator />;
+  return isAuth?.token != null || isAuth?.user != null ? (
+    <AppNavigator />
+  ) : (
+    <AuthNavigator />
+  );
   // return isAuth?.user ? <AppNavigator /> : <AuthNavigator />;
 };
 
