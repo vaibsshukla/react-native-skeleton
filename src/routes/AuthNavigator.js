@@ -6,11 +6,6 @@ import {Login, Register} from '../screens';
 const AuthNavigator = () => {
   const Stack = createStackNavigator();
 
-  //   const stackNavigatorOptions = {
-  //     headerShown: null,
-  //     ...TransitionPresets.SlideFromRightIOS,
-  //   };
-
   return (
     <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} />

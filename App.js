@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   setDefaultData = appLang => {
-    AppStrings.setLanguage(appLang);
+    // AppStrings.setLanguage(appLang);
   };
 
   let network = CheckConnection();
